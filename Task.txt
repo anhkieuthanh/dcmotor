@@ -1,0 +1,10 @@
+1.Todo
+- Change display value into dynamic
+2.Done
+- Create socket server
+- Connect web-server to socket server
+- Socket server response when have a connection
+- Socket send set speed from web to hardware
+- Socket send speed form hardware to web
+- Web send set speed to socket
+- Web displays value received form socket

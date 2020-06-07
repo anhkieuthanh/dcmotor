@@ -1,0 +1,79 @@
+<html ng-app="app">
+
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+    <link href="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="http://localhost:3060/socket.io/socket.io.js"></script>
+    <title>Motor Control</title>
+    <script>
+        // Create a client instance 
+        const socket = io('http://localhost:3060')
+        function onSendSpeed(){
+            var payload = document.getElementById('speedRequire').value;
+            setSpeed = payload;
+            socket.emit('setSpeed',{speed:setSpeed});
+            socket.on('setSpeedHardware',data=>{
+                console.log(data);  
+            })
+        }
+        function displaySpeed(){
+            socket.on('displaySpeed',(data)=>{
+                document.getElementById('receiveData').innerHTML = data.resSpeed;
+            })
+        }
+        displaySpeed();
+    </script>
+</head>
+
+<body ng-controller="dcMotor">
+    <header>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4" style="font-weight: bold;">DC Motor Controller</h1>
+                <p class="lead">Adjust and Display DC motor speed
+                </p>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="/image/motor.jpg" width="100%" height="100%" />
+            </div>
+            <div class="col-sm-6" style="align-items: center;">
+                <div class="card border-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header" style="text-align: center; font-weight: bold;">Controll Area</div>
+                    <div class="card-body text-success">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                            </li>
+                            <li class="list-group-item " style="font-weight: bold; text-align: center; ">Input speed
+                            </li>
+                            <li class="list-group-item ">
+                                <div class="input-group mb-3 ">
+                                    <input type="text " class="form-control " id="speedRequire" ng-model="data.input" placeholder="0-100 " aria-describedby="button-addon2 ">
+                                    <div class="input-group-append ">
+                                        <button class="btn btn-outline-secondary " onclick="onSendSpeed()" ng-click="resetData()" id="button-addon2 ">Send</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item " style="text-align: center; font-weight: bold; ">Value</li>
+                            <li class="list-group-item ">
+                                <p class="form-control " type="text " id="receiveData" tyle="text-align: center; " readonly></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+</div>
+</div>
+</body>
+
+</html>
