@@ -1,5 +1,7 @@
 1.Todo
-- Change display value into dynamic
+- Send speed from web to esp8266
+- Send speed form esp8266 to arduino
+
 2.Done
 - Create socket server
 - Connect web-server to socket server
@@ -8,3 +10,6 @@
 - Socket send speed form hardware to web
 - Web send set speed to socket
 - Web displays value received form socket
+- Send data from esp8266 to socket
+- Connect real speed
+- Display real speed to web

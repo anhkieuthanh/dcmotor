@@ -13,17 +13,15 @@
         function onSendSpeed(){
             var payload = document.getElementById('speedRequire').value;
             setSpeed = payload;
-            socket.emit('setSpeed',{speed:setSpeed});
-            socket.on('setSpeedHardware',data=>{
-                console.log(data);  
-            })
+            socket.emit('setSpeed',setSpeed);
         }
-        function displaySpeed(){
-            socket.on('displaySpeed',(data)=>{
+        
+            socket.on("displaySpeed",(data)=>{
+                console.log(data.resSpeed);
                 document.getElementById('receiveData').innerHTML = data.resSpeed;
             })
-        }
-        displaySpeed();
+        
+    
     </script>
 </head>
 
